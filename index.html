@@ -99,7 +99,7 @@
       backdrop-filter: blur(8px);
     }
 
-    /* MENU - AGORA A PRETO */
+    /* MENU - A PRETO */
     .nav {
       display: flex;
       justify-content: center;
@@ -124,21 +124,21 @@
       border-color: var(--gold);
     }
 
-    /* Painel do logo dourado */
+    /* LOGO sem dourado atrás */
     .logo-panel {
       display: inline-block;
-      padding: 1rem;
-      border-radius: 16px;
-      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
       margin-bottom: 1rem;
     }
 
+    /* LOGO maior */
     .logo-panel img {
-      max-width: 280px;
+      max-width: 380px;
       width: 100%;
       border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.4);
+      border: none;
     }
 
     h1 {
@@ -150,10 +150,13 @@
       text-shadow: 0 0 8px rgba(166,139,59,0.5);
     }
 
+    /* SUBTÍTULO LIMPO */
     .subtitle {
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.16em;
+      margin-top: 0.6rem;
+      font-size: 1rem;
     }
 
     .tagline { color: var(--muted); }
@@ -232,6 +235,8 @@
   </div>
 
   <header>
+
+    <!-- MENU -->
     <nav class="nav">
       <div class="nav-links">
         <a href="#sobre">Sobre</a>
@@ -242,18 +247,16 @@
       </div>
     </nav>
 
+    <!-- LOGO -->
     <div class="logo-panel">
-      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg">
+      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
     </div>
 
     <h1>Mafra Backyard Ultra</h1>
-    <div class="subtitle">Backyard Ultra • Portugal</div>
-    <p class="tagline">Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1h por volta.</p>
 
-    <div class="buttons">
-      <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
-      <a href="#" class="btn btn-primary">Inscrições</a>
-    </div>
+    <!-- SUBTÍTULO FINAL -->
+    <div class="subtitle">Backyard Ultra • Portugal</div>
+
   </header>
 
 </body>
