@@ -13,6 +13,8 @@
       --text: #f5f5f5;
       --muted: #a0a4aa;
       --border: #262a30;
+      --gold: #c9a449;
+      --gold-dark: #8c6f2b;
     }
 
     * { box-sizing: border-box; }
@@ -29,7 +31,7 @@
       overflow-x: hidden;
     }
 
-    /* 🔥 Fundo animado estilo militar */
+    /* 🔥 Fundo animado estilo militar (folhas) */
     body::before {
       content: "";
       position: fixed;
@@ -58,28 +60,66 @@
       backdrop-filter: blur(4px);
     }
 
-    /* NAV SIMPLES NO TOPO */
+    /* NAV COM LINKS + LÍNGUA */
     .nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 1rem;
       margin-bottom: 1rem;
       font-size: 0.8rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    .nav a {
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: var(--muted);
       border-bottom: 1px solid transparent;
       padding-bottom: 0.1rem;
     }
 
-    .nav a:hover {
+    .nav-links a:hover {
       color: var(--accent);
       border-color: var(--accent);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .lang-toggle .lang {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .lang-toggle .lang.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-toggle a.lang {
+      color: var(--muted);
+    }
+
+    .lang-toggle a.lang:hover {
+      color: var(--accent);
     }
 
     /* ANIMAÇÕES DO HEADER */
@@ -117,6 +157,24 @@
     @keyframes fadeIn {
       from { opacity: 0; }
       to   { opacity: 1; }
+    }
+
+    /* PAINEL DOURADO DO LOGO */
+    .logo-panel {
+      display: inline-block;
+      padding: 0.9rem 1.1rem 0.8rem;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .logo-panel img {
+      max-width: 280px;
+      width: 100%;
+      margin-bottom: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,0.4);
     }
 
     .logo-text {
@@ -266,10 +324,56 @@
       margin-top: 2rem;
     }
 
+    /* BARRA SOCIAL DIREITA */
+    .social-bar {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      z-index: 20;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid #ffffff55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #ffffff;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .social-icon:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .social-icon:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: scale(1.07);
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       .event-info { gap: 1rem; }
-      .nav { gap: 0.8rem; }
+      .nav { justify-content: center; }
+      .nav-links { justify-content: center; }
+      .social-bar { right: 0.4rem; }
     }
 
   </style>
@@ -277,22 +381,37 @@
 
 <body>
 
+  <!-- BARRA SOCIAL FIXA (Facebook / Instagram) -->
+  <!-- Troca os href pelos links reais das tuas páginas -->
+  <div class="social-bar">
+    <a href="#" class="social-icon" aria-label="Facebook">f</a>
+    <a href="#" class="social-icon" aria-label="Instagram">◎</a>
+  </div>
+
   <header>
 
-    <!-- NAV SIMPLES NO TOPO -->
+    <!-- NAV COM LINKS + LÍNGUAS -->
     <nav class="nav">
-      <a href="#sobre">Sobre</a>
-      <a href="#local">Local</a>
-      <a href="#percurso">Percurso</a>
-      <a href="#inscricoes">Inscrições</a>
-      <a href="#contactos">Contactos</a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#local">Local</a>
+        <a href="#percurso">Percurso</a>
+        <a href="#inscricoes">Inscrições</a>
+        <a href="#contactos">Contactos</a>
+      </div>
+      <div class="lang-toggle">
+        <span class="lang active">PT</span>
+        <span>·</span>
+        <a href="en.html" class="lang">EN</a>
+      </div>
     </nav>
 
-    <!-- LOGO COM ANIMAÇÃO -->
-    <div class="header-logo" style="text-align:center;">
-      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
-           alt="Mafra Backyard Ultra logo"
-           style="max-width:280px; margin-bottom: 1rem; border-radius: 12px;">
+    <!-- LOGO COM PAINEL DOURADO E ANIMAÇÃO -->
+    <div class="header-logo">
+      <div class="logo-panel">
+        <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
+             alt="Mafra Backyard Ultra logo">
+      </div>
     </div>
 
     <div class="logo-text header-subtitle">Tapada Militar · Mafra</div>
