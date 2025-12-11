@@ -18,10 +18,10 @@
 
   <style>
     :root{
-      /* novos tons “verde tropa” */
+      /* tons “verde tropa” + dourado */
       --bg: #1f2b1f;
       --bg-soft: #2b3b2b;
-      --surface: rgba(255,255,255,0.96);
+      --surface: rgba(255, 215, 120, 0.96); /* balões dourados */
       --muted: #dadada;
       --text: #111;
       --accent: #ffd04a;
@@ -79,11 +79,11 @@
       z-index:-1;
       pointer-events:none;
       background:
-        url("img/logo-backyard-mafra-grande.png") /* TODO: trocar pelo caminho real, ex: ./img/logo-mafra.svg */
+        url("img/logo-backyard-mafra-grande.png") /* TODO: caminho real */
         no-repeat
         center 20vh;
       background-size:min(70vw, 720px);
-      opacity:0.055;   /* intensidade do logo de fundo */
+      opacity:0.055;
       mix-blend-mode:soft-light;
     }
 
@@ -112,26 +112,37 @@
     }
     nav{
       display:flex;
-      justify-content:space-between;
-      align-items:center;
+      flex-direction:column;   /* tudo em coluna */
+      justify-content:center;
+      align-items:center;      /* centra logo + nav */
       gap:1rem;
       flex-wrap:wrap;
       margin-bottom:1.75rem;
+      text-align:center;
     }
 
-    /* LOGO PEQUENO NO TOPO ESQUERDO, COM FUNDO BRANCO */
+    /* wrapper do logo (o <div> que já lá está) */
+    nav > div{
+      display:flex;
+      align-items:center;
+      justify-content:center;  /* logo centrado */
+      width:100%;
+      gap:1rem;
+    }
+
+    /* LOGO CENTRADO, COM FUNDO BRANCO */
     .logo{
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:0.25rem 0.6rem;
+      padding:0.4rem 0.8rem;
       background:#ffffff;
       border-radius:0.9rem;
       box-shadow:0 4px 12px rgba(0,0,0,0.25);
     }
     .logo img{
       display:block;
-      height:400px;      /* podes ajustar o tamanho aqui */
+      height:160px;   /* ajusta aqui se quiseres maior/menor */
       width:auto;
     }
 
@@ -141,7 +152,8 @@
       gap:1rem;
       flex-wrap:wrap;
       align-items:center;
-      margin-left:auto;
+      justify-content:center;
+      margin-left:0;
     }
     .nav-list a{color: #eee; opacity:.95; font-size:0.95rem}
     .nav-list a:hover{opacity:1;text-decoration:underline}
@@ -175,8 +187,13 @@
     }
     .btn-primary:hover{filter:brightness(1.05)}
 
+    /* CARTÃO DA HERO DOURADO */
     .hero-card{
-      padding:1.25rem;border-radius:var(--radius);background:rgba(0,0,0,0.16);border:1px solid rgba(255,255,255,0.18);font-size:0.95rem;
+      padding:1.25rem;
+      border-radius:var(--radius);
+      background:rgba(255, 208, 74, 0.18);
+      border:1px solid rgba(255, 220, 140, 0.9);
+      font-size:0.95rem;
     }
     .hero-card h3{font-size:1rem;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:.08em;opacity:.95}
     .hero-card ul{list-style:none;padding-left:0}
@@ -185,7 +202,7 @@
     main{padding:2.25rem 0 2.5rem}
     section{
       margin-bottom:1.75rem;
-      background:var(--surface);
+      background:var(--surface);          /* balões dourados */
       border-radius:var(--radius);
       padding:1.5rem;
       box-shadow:0 8px 20px rgba(0,0,0,0.25);
@@ -202,7 +219,13 @@
     .pill{border-radius:999px;border:1px solid #eee;padding:0.2rem 0.7rem;font-size:0.8rem;background:#fafafa}
 
     .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:0.8rem}
-    .price-card{border-radius:0.9rem;border:1px solid #eee;padding:0.8rem 0.9rem;background:#fcfcfc;font-size:0.95rem}
+    .price-card{
+      border-radius:0.9rem;
+      border:1px solid #e0c36a;
+      padding:0.8rem 0.9rem;
+      background:rgba(255, 230, 170, 0.98); /* balão dourado mais claro */
+      font-size:0.95rem;
+    }
 
     .contact-list p{margin-bottom:0.35rem}
 
@@ -215,7 +238,7 @@
       .nav-list{display:none;width:100%;padding-top:0.75rem}
       .nav-list[aria-hidden="false"]{display:flex;flex-direction:column;gap:0.6rem}
       header{padding-bottom:2rem}
-      .logo img{height:34px;}
+      .logo img{height:120px;}
     }
   </style>
 </head>
@@ -225,12 +248,11 @@
   <header>
     <div class="container">
       <nav aria-label="Navegação principal" role="navigation">
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <!-- LOGO PEQUENO NO TOPO ESQUERDO -->
+        <div>
+          <!-- LOGO CENTRADO -->
           <div class="logo">
-            <!-- TODO: trocar o src pela tua imagem real.
-                 Convém usar um ficheiro sem espaços no nome, ex: img/logo-mafra-backyard.png -->
-            <img src="logo"
+            <!-- TODO: trocar o src pela tua imagem real -->
+            <img src="img/logo-backyard-mafra-pequeno.png"
                  alt="Mafra Backyard Ultra – Tapada Militar" />
           </div>
 
@@ -282,8 +304,6 @@
 
   <main id="maincontent" tabindex="-1">
     <div class="container">
-      <!-- resto das secções: IGUAL AO TEU CÓDIGO ORIGINAL -->
-      <!-- O Evento -->
       <section id="evento">
         <h2>O Evento</h2>
         <p>
@@ -298,11 +318,6 @@
           possa crescer ano após ano.
         </p>
       </section>
-
-      <!-- (mantém aqui todas as restantes secções tal como tinhas:
-           formato, tapada, objetivos, estrutura, base, percurso, inscrições, parcerias, contactos) -->
-
-      <!-- ... COPIA todas as tuas secções a partir daqui sem alterações de estilo ... -->
 
       <section id="formato">
         <h2>Formato Backyard Ultra</h2>
