@@ -2,47 +2,30 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <title>Mafra Backyard Ultra – Tapada Militar</title>
+  <title>Mafra Backyard Ultra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
     :root {
-      --bg: #0a0a09;
-      --bg-alt: #141411;
-      --accent: #485A2F;       /* Verde militar */
-      --text: #f5f5f5;
-      --muted: #d2d2c7;
-      --border: #3a3a32;
-      --gold: #A68B3B;         /* Dourado militar */
-      --gold-dark: #6F5520;    /* Dourado mais escuro */
+      --accent: #485A2F;
+      --gold: #A68B3B;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* Fundo camuflado dourado */
-    body::before {
-      content: "";
-      position: fixed;
-      top: -10px;
-      left: -10px;
-      width: calc(100% + 20px);
-      height: calc(100% + 20px);
+      height: 100vh;
+      width: 100vw;
       background: url("https://i.imgur.com/YVh3pFI.png");
-      opacity: 0.23;
-      z-index: -1;
-      background-size: 260%;
+      background-size: 250%;
+      background-position: center;
       animation: movebg 22s infinite linear;
-      filter: sepia(70%) hue-rotate(20deg) brightness(1.1) blur(4px);
-      transform: scale(1.02);
+      filter: sepia(60%) hue-rotate(20deg) brightness(1.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: system-ui, sans-serif;
     }
 
     @keyframes movebg {
@@ -51,175 +34,48 @@
       100% { background-position: 0% 0%; }
     }
 
-    /* Línguas canto esquerdo */
-    .corner-lang {
-      position: fixed;
-      top: 0.8rem;
-      left: 0.9rem;
-      z-index: 40;
-      display: flex;
-      gap: 0.3rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .corner-lang-link {
-      padding: 0.1rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      color: var(--muted);
-      background: rgba(0,0,0,0.45);
+    /* CONTAINER CENTRAL */
+    .center-box {
+      text-align: center;
+      background: rgba(0,0,0,0.55);
+      padding: 2rem 3rem;
+      border-radius: 18px;
       backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
-    .corner-lang-link.active {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .corner-lang-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* HEADER dourado */
-    header {
-      padding: 2.7rem 1.5rem 2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gold-dark);
-      background: linear-gradient(
-        180deg,
-        rgba(166,139,59,0.5),
-        rgba(20,20,17,0.95)
-      );
-      box-shadow: 0 14px 40px rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-    }
-
-    /* MENU - A PRETO */
-    .nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.6rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #000000;     /* PRETO */
-      font-weight: 700;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 0.1rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);   /* Dourado */
-      border-color: var(--gold);
-    }
-
-    /* LOGO sem dourado atrás */
-    .logo-panel {
-      display: inline-block;
-      padding: 0;
-      background: transparent;
-      box-shadow: none;
-      margin-bottom: 1rem;
-    }
-
-    /* LOGO maior */
-    .logo-panel img {
-      max-width: 380px;
+    /* LOGO MAIOR */
+    .center-box img {
+      max-width: 420px;
       width: 100%;
+      margin-bottom: 2rem;
       border-radius: 12px;
-      border: none;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-shadow: 0 0 8px rgba(166,139,59,0.5);
-    }
-
-    /* SUBTÍTULO LIMPO */
-    .subtitle {
-      color: var(--accent);
+    /* LINKS */
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 1.2rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      margin-top: 0.6rem;
-      font-size: 1rem;
     }
 
-    .tagline { color: var(--muted); }
-
-    .event-info span strong { color: var(--gold); }
-    .event-info span { color: var(--muted); }
-
-    /* Botões */
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
+    .menu-links a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 700;
+      padding: 0.6rem 1.2rem;
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      transition: 0.3s;
     }
 
-    .btn-primary {
-      border: 1px solid var(--gold-dark);
+    .menu-links a:hover {
       background: var(--gold);
-      color: #201e15;
-      font-weight: bold;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-dark);
-      color: white;
-    }
-
-    .btn-outline {
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      background: transparent;
-    }
-
-    .btn-outline:hover {
-      background: var(--accent);
-      color: #f4f4f4;
-    }
-
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      background: rgba(20,20,17,0.85);
-      border-radius: 12px;
-      border: 1px solid var(--gold-dark);
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    }
-
-    section h2 { color: var(--accent); }
-    section h3 { color: var(--gold); }
-
-    .highlight-box {
-      background: rgba(70,70,60,0.4);
-      border: 1px solid var(--gold-dark);
-      color: #e8e6d9;
-    }
-
-    footer {
-      border-top: 1px solid var(--gold-dark);
-      padding: 1rem;
-      text-align: center;
-      color: var(--muted);
+      color: black;
+      transform: scale(1.05);
     }
 
   </style>
@@ -227,37 +83,21 @@
 
 <body>
 
-  <!-- LÍNGUAS -->
-  <div class="corner-lang">
-    <a href="index.html" class="corner-lang-link active">PT</a>
-    <span>·</span>
-    <a href="en.html" class="corner-lang-link">EN</a>
-  </div>
-
-  <header>
-
-    <!-- MENU -->
-    <nav class="nav">
-      <div class="nav-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#local">Local</a>
-        <a href="#percurso">Percurso</a>
-        <a href="#inscricoes">Inscrições</a>
-        <a href="#contactos">Contactos</a>
-      </div>
-    </nav>
+  <div class="center-box">
 
     <!-- LOGO -->
-    <div class="logo-panel">
-      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
+    <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
+
+    <!-- LINKS -->
+    <div class="menu-links">
+      <a href="index2.html#sobre">Sobre</a>
+      <a href="index2.html#local">Local</a>
+      <a href="index2.html#percurso">Percurso</a>
+      <a href="index2.html#inscricoes">Inscrições</a>
+      <a href="index2.html#contactos">Contactos</a>
     </div>
 
-    <h1>Mafra Backyard Ultra</h1>
-
-    <!-- SUBTÍTULO FINAL -->
-    <div class="subtitle">Backyard Ultra • Portugal</div>
-
-  </header>
+  </div>
 
 </body>
 </html>
