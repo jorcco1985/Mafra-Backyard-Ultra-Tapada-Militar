@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mafra Backyard Ultra – Tapada Militar</title>
   <meta name="description" content="Mafra Backyard Ultra – prova de resistência em formato Backyard Ultra na Tapada Militar de Mafra." />
-  <!-- TODO: replace with your canonical URL -->
   <link rel="canonical" href="https://example.com/" />
   <meta name="theme-color" content="#111111" />
 
@@ -13,46 +12,84 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mafra Backyard Ultra – Tapada Militar" />
   <meta property="og:description" content="Mafra Backyard Ultra – prova de resistência em formato Backyard Ultra na Tapada Militar de Mafra." />
-  <!-- TODO: set a real OG image -->
   <meta property="og:image" content="https://example.com/og-image.jpg" />
   <meta property="og:url" content="https://example.com/" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     :root{
-      --bg: #f5f5f5;
-      --surface: #fff;
-      --muted: #666;
+      /* novos tons “verde tropa” */
+      --bg: #1f2b1f;
+      --bg-soft: #2b3b2b;
+      --surface: rgba(255,255,255,0.96);
+      --muted: #dadada;
       --text: #111;
       --accent: #ffd04a;
-      --dark-1: #111;
-      --dark-2: #444;
+      --dark-1: rgba(0,0,0,0.88);
+      --dark-2: rgba(10,10,10,0.85);
       --container: 980px;
       --radius: 1rem;
       --gap: 1.5rem;
       --transition: 180ms ease;
     }
-    /* Reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       :root { --transition: 0ms; }
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
+
     body{
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background:var(--bg);
       color:var(--text);
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      padding-bottom:2rem;
+      position:relative;
+      overflow-x:hidden;
+    }
+
+    /* FUNDO VERDE TROPA EM MOVIMENTO */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 0% 0%, #344834 0, transparent 55%),
+        radial-gradient(circle at 100% 0%, #1b261b 0, transparent 55%),
+        radial-gradient(circle at 0% 100%, #253525 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #3a4c3a 0, transparent 55%),
+        linear-gradient(120deg, var(--bg) 0%, var(--bg-soft) 100%);
+      background-size: 220% 220%;
+      animation: bgMove 26s linear infinite alternate;
+    }
+
+    @keyframes bgMove{
+      0%{background-position:0% 0%}
+      50%{background-position:50% 100%}
+      100%{background-position:100% 0%}
+    }
+
+    /* LOGO GRANDE DE FUNDO (MARCA D’ÁGUA) */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background:
+        url("img/logo-backyard-mafra-grande.png") /* TODO: trocar pelo caminho real, ex: ./img/logo-mafra.svg */
+        no-repeat
+        center 20vh;
+      background-size:min(70vw, 720px);
+      opacity:0.055;   /* intensidade do logo de fundo */
+      mix-blend-mode:soft-light;
     }
 
     a{color:inherit}
     .container{max-width:var(--container);margin:0 auto;padding:0 1.25rem}
 
-    /* Skip link */
     .skip-link{
       position:absolute;
       left:1rem;
@@ -71,6 +108,7 @@
       background:linear-gradient(135deg,var(--dark-1),var(--dark-2));
       color:#fff;
       padding:2.25rem 0 3rem;
+      box-shadow:0 10px 25px rgba(0,0,0,0.45);
     }
     nav{
       display:flex;
@@ -80,7 +118,23 @@
       flex-wrap:wrap;
       margin-bottom:1.75rem;
     }
-    .logo{font-weight:700;letter-spacing:.06em;font-size:.95rem;text-transform:uppercase}
+
+    /* LOGO PEQUENO NO TOPO ESQUERDO, COM FUNDO BRANCO */
+    .logo{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0.25rem 0.6rem;
+      background:#ffffff;
+      border-radius:0.9rem;
+      box-shadow:0 4px 12px rgba(0,0,0,0.25);
+    }
+    .logo img{
+      display:block;
+      height:40px;      /* podes ajustar o tamanho aqui */
+      width:auto;
+    }
+
     .nav-list{
       list-style:none;
       display:flex;
@@ -93,11 +147,10 @@
     .nav-list a:hover{opacity:1;text-decoration:underline}
     .nav-list a:focus{outline:3px solid rgba(255,208,74,0.25);outline-offset:3px}
 
-    /* Mobile menu */
     .menu-toggle{
       display:none;
       background:transparent;
-      border:1px solid rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.35);
       color:#fff;
       padding:0.45rem;
       border-radius:8px;
@@ -123,20 +176,27 @@
     .btn-primary:hover{filter:brightness(1.05)}
 
     .hero-card{
-      padding:1.25rem;border-radius:var(--radius);background:rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.10);font-size:0.95rem;
+      padding:1.25rem;border-radius:var(--radius);background:rgba(0,0,0,0.16);border:1px solid rgba(255,255,255,0.18);font-size:0.95rem;
     }
     .hero-card h3{font-size:1rem;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:.08em;opacity:.95}
     .hero-card ul{list-style:none;padding-left:0}
     .hero-card li::before{content:"• ";color:var(--accent)}
 
     main{padding:2.25rem 0 2.5rem}
-    section{margin-bottom:1.75rem;background:var(--surface);border-radius:var(--radius);padding:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    section{
+      margin-bottom:1.75rem;
+      background:var(--surface);
+      border-radius:var(--radius);
+      padding:1.5rem;
+      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      backdrop-filter:blur(3px);
+    }
     section h2{font-size:1.35rem;margin-bottom:0.6rem}
     section h3{font-size:1.05rem;margin:1rem 0 0.4rem}
     p{margin-bottom:0.6rem;font-size:0.97rem}
     ul{margin-left:1.2rem;margin-bottom:0.5rem}
     li{margin-bottom:0.35rem;font-size:0.95rem}
-    footer{text-align:center;font-size:0.85rem;color:var(--muted);padding:1.5rem 1rem 2rem}
+    footer{text-align:center;font-size:0.85rem;color:#f0f0f0;padding:1.5rem 1rem 2rem;background:rgba(0,0,0,0.75);margin-top:1rem}
 
     .pill-list{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem}
     .pill{border-radius:999px;border:1px solid #eee;padding:0.2rem 0.7rem;font-size:0.8rem;background:#fafafa}
@@ -146,17 +206,16 @@
 
     .contact-list p{margin-bottom:0.35rem}
 
-    /* Focus-visible polyfill for browsers lacking :focus-visible */
     :focus{outline: none}
     :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 
-    /* Responsive */
     @media (max-width:720px){
       .hero{grid-template-columns:1fr;gap:1.25rem}
       .menu-toggle{display:inline-block}
       .nav-list{display:none;width:100%;padding-top:0.75rem}
       .nav-list[aria-hidden="false"]{display:flex;flex-direction:column;gap:0.6rem}
       header{padding-bottom:2rem}
+      .logo img{height:34px;}
     }
   </style>
 </head>
@@ -167,7 +226,14 @@
     <div class="container">
       <nav aria-label="Navegação principal" role="navigation">
         <div style="display:flex;align-items:center;gap:1rem;">
-          <div class="logo">Mafra Backyard Ultra</div>
+          <!-- LOGO PEQUENO NO TOPO ESQUERDO -->
+          <div class="logo">
+            <!-- TODO: trocar o src pela tua imagem real.
+                 Convém usar um ficheiro sem espaços no nome, ex: img/logo-mafra-backyard.png -->
+            <img src="logo"
+                 alt="Mafra Backyard Ultra – Tapada Militar" />
+          </div>
+
           <!-- Mobile menu toggle -->
           <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
             ☰
@@ -198,7 +264,6 @@
             <span>🔁 Loop de 6,706 km</span>
           </div>
 
-          <!-- If you have a registration page, replace href with the real link -->
           <a href="#inscricoes" class="btn-primary">Inscreve-te</a>
         </div>
 
@@ -217,6 +282,8 @@
 
   <main id="maincontent" tabindex="-1">
     <div class="container">
+      <!-- resto das secções: IGUAL AO TEU CÓDIGO ORIGINAL -->
+      <!-- O Evento -->
       <section id="evento">
         <h2>O Evento</h2>
         <p>
@@ -231,6 +298,11 @@
           possa crescer ano após ano.
         </p>
       </section>
+
+      <!-- (mantém aqui todas as restantes secções tal como tinhas:
+           formato, tapada, objetivos, estrutura, base, percurso, inscrições, parcerias, contactos) -->
+
+      <!-- ... COPIA todas as tuas secções a partir daqui sem alterações de estilo ... -->
 
       <section id="formato">
         <h2>Formato Backyard Ultra</h2>
@@ -407,7 +479,6 @@
   </footer>
 
   <script defer>
-    // Simple accessible mobile nav toggle
     (function(){
       const btn = document.getElementById('menuToggle');
       const nav = document.getElementById('primaryNav');
@@ -422,7 +493,6 @@
         const open = btn.getAttribute('aria-expanded') === 'true';
         setState(!open);
       });
-      // close nav on resize to desktop
       window.addEventListener('resize', ()=>{
         if(window.innerWidth > 720){
           setState(false);
@@ -431,18 +501,16 @@
           nav.setAttribute('aria-hidden','true');
         }
       });
-      // set year
       document.getElementById('year').textContent = new Date().getFullYear();
     })();
   </script>
 
-  <!-- Structured data (fill with real values later) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Mafra Backyard Ultra – Tapada Militar",
-    "startDate": "2026-01-01",  /* TODO: replace with actual date in ISO format */
+    "startDate": "2026-01-01",
     "location": {
       "@type": "Place",
       "name": "Tapada Militar de Mafra",
