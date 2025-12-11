@@ -7,31 +7,29 @@
 
   <style>
     :root {
-      --bg: #050607;
-      --bg-alt: #101214;
-      --accent: #6ea16a;  
+      --bg: #0a0a09;
+      --bg-alt: #141411;
+      --accent: #485A2F;       /* Verde militar */
       --text: #f5f5f5;
-      --muted: #a0a4aa;
-      --border: #262a30;
-      --gold: #c9a449;
-      --gold-dark: #8c6f2b;
+      --muted: #d2d2c7;
+      --border: #3a3a32;
+      --gold: #A68B3B;         /* Dourado militar */
+      --gold-dark: #6F5520;    /* Dourado mais escuro */
     }
 
     * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
     }
 
-    /* 🔥 Fundo animado camuflado desfocado */
+    /* Fundo camuflado DOURADO */
     body::before {
       content: "";
       position: fixed;
@@ -40,28 +38,27 @@
       width: calc(100% + 20px);
       height: calc(100% + 20px);
       background: url("https://i.imgur.com/YVh3pFI.png");
-      opacity: 0.2;
+      opacity: 0.23;
       z-index: -1;
-      background-size: 300%;
+      background-size: 260%;
       animation: movebg 22s infinite linear;
-      filter: blur(4px);
+      filter: sepia(70%) hue-rotate(20deg) brightness(1.1) blur(4px);
       transform: scale(1.02);
     }
 
     @keyframes movebg {
-      0%   { background-position: 0% 0%; }
-      50%  { background-position: 80% 80%; }
+      0% { background-position: 0% 0%; }
+      50% { background-position: 80% 80%; }
       100% { background-position: 0% 0%; }
     }
 
-    /* 🌍 Links PT / EN no topo esquerdo */
+    /* LÍNGUAS */
     .corner-lang {
       position: fixed;
       top: 0.8rem;
       left: 0.9rem;
       z-index: 40;
       display: flex;
-      align-items: center;
       gap: 0.3rem;
       font-size: 0.8rem;
       letter-spacing: 0.16em;
@@ -89,112 +86,56 @@
       color: var(--accent);
     }
 
+    /* HEADER dourado */
     header {
       padding: 2.7rem 1.5rem 2rem;
       text-align: center;
-      border-bottom: 1px solid var(--border);
-      /* 💛 Painel de cima com fundo dourado */
-      background: radial-gradient(circle at top,
-        rgba(201,164,73,0.45),
-        rgba(5,6,7,0.95)
+      border-bottom: 1px solid var(--gold-dark);
+      background: linear-gradient(
+        180deg,
+        rgba(166,139,59,0.5),
+        rgba(20,20,17,0.95)
       );
-      backdrop-filter: blur(6px);
       box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+      backdrop-filter: blur(8px);
     }
 
-    /* NAV COM LINKS */
     .nav {
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 1.6rem;
       margin-bottom: 1.5rem;
       font-size: 0.8rem;
-      letter-spacing: 0.16em;
       text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+      letter-spacing: 0.16em;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: var(--muted);
-      border-bottom: 1px solid transparent;
-      padding-bottom: 0.1rem;
-    }
-
-    .nav-links a:hover {
       color: var(--accent);
-      border-color: var(--accent);
+      border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+      border-color: var(--gold);
     }
 
-    /* ANIMAÇÕES DO HEADER */
-    .header-logo {
-      animation: fadeInDown 1.2s ease-out forwards;
-      opacity: 0;
-    }
-
-    .header-title {
-      animation: fadeInUp 1.2s ease-out forwards;
-      opacity: 0;
-      animation-delay: 0.3s;
-    }
-
-    .header-subtitle, .tagline, .event-info, .buttons {
-      animation: fadeIn 1s ease-out forwards;
-      opacity: 0;
-    }
-
-    .header-subtitle { animation-delay: 0.5s; }
-    .tagline        { animation-delay: 0.7s; }
-    .event-info     { animation-delay: 0.9s; }
-    .buttons        { animation-delay: 1.1s; }
-
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* PAINEL DOURADO DO LOGO */
+    /* Logo painel dourado */
     .logo-panel {
       display: inline-block;
-      padding: 0.9rem 1.1rem 0.8rem;
+      padding: 1rem;
       border-radius: 16px;
       background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       margin-bottom: 1rem;
     }
 
     .logo-panel img {
       max-width: 280px;
       width: 100%;
-      margin-bottom: 0;
       border-radius: 12px;
       border: 1px solid rgba(0,0,0,0.4);
-    }
-
-    .logo-text {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.35em;
-      color: var(--muted);
-      margin-top: 0.75rem;
-      margin-bottom: 0.6rem;
     }
 
     h1 {
@@ -202,216 +143,94 @@
       font-size: 2.6rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
+      color: var(--gold);
+      text-shadow: 0 0 8px rgba(166,139,59,0.5);
     }
 
     .subtitle {
-      margin-top: 0.4rem;
-      font-size: 0.95rem;
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--muted);
     }
 
-    .tagline {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
+    .tagline { color: var(--muted); }
 
-    .event-info {
-      margin-top: 1.5rem;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-    }
-
+    /* INFO */
     .event-info span strong {
-      display: block;
-      font-size: 0.95rem;
-      color: var(--text);
+      color: var(--gold);
     }
+    .event-info span { color: var(--muted); }
 
-    .buttons {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
+    /* Botões */
     .btn {
       padding: 0.8rem 1.8rem;
       border-radius: 999px;
-      border: 1px solid var(--accent);
-      text-decoration: none;
       text-transform: uppercase;
       font-size: 0.8rem;
       letter-spacing: 0.2em;
-      cursor: pointer;
-      display: inline-block;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #081008;
+      border: 1px solid var(--gold-dark);
+      background: var(--gold);
+      color: #201e15;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      color: white;
     }
 
     .btn-outline {
-      background: transparent;
+      border: 1px solid var(--accent);
       color: var(--accent);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #f4f4f4;
     }
 
     main {
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
-      background: #050607cc;
-      backdrop-filter: blur(6px);
+      background: rgba(20,20,17,0.85);
       border-radius: 12px;
-      margin-top: 2rem;
+      border: 1px solid var(--gold-dark);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
     }
 
-    section {
-      margin-bottom: 2.3rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1.6rem;
-    }
-
-    section:last-of-type {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    section h2 {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      margin: 0 0 0.7rem;
-    }
-
-    section h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.2rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: #dde0e4;
-      margin: 0.2rem 0 0.6rem;
-    }
-
-    ul {
-      margin: 0.3rem 0 0.3rem 1.1rem;
-      padding: 0;
-    }
-
-    li {
-      font-size: 0.93rem;
-      line-height: 1.5;
-      color: #dde0e4;
-    }
+    section h2 { color: var(--accent); }
+    section h3 { color: var(--gold); }
 
     .highlight-box {
-      background: var(--bg-alt);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 1rem 1rem 0.8rem;
-      margin-top: 0.6rem;
+      background: rgba(70,70,60,0.4);
+      border: 1px solid var(--gold-dark);
+      color: #e8e6d9;
     }
 
     footer {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--gold-dark);
       padding: 1rem;
       text-align: center;
-      font-size: 0.8rem;
       color: var(--muted);
-      margin-top: 2rem;
-    }
-
-    /* BARRA SOCIAL DIREITA */
-    .social-bar {
-      position: fixed;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-      z-index: 20;
-    }
-
-    .social-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 999px;
-      border: 1px solid #ffffff55;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.1rem;
-      color: #ffffff;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(4px);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .social-icon:nth-child(2) {
-      animation-delay: 0.6s;
-    }
-
-    .social-icon:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: scale(1.07);
-    }
-
-    @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-4px); }
-      100% { transform: translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      .event-info { gap: 1rem; }
-      .nav { justify-content: center; }
-      .nav-links { justify-content: center; }
-      .social-bar { right: 0.4rem; }
-      .corner-lang {
-        top: 0.6rem;
-        left: 0.6rem;
-      }
     }
 
   </style>
 </head>
-
 <body>
 
-  <!-- 🌍 Links PT / EN topo esquerdo -->
+  <!-- LÍNGUAS -->
   <div class="corner-lang">
     <a href="index.html" class="corner-lang-link active">PT</a>
     <span>·</span>
     <a href="en.html" class="corner-lang-link">EN</a>
   </div>
 
-  <!-- BARRA SOCIAL FIXA (Facebook / Instagram) -->
-  <div class="social-bar">
-    <a href="#" class="social-icon" aria-label="Facebook">f</a>
-    <a href="#" class="social-icon" aria-label="Instagram">◎</a>
-  </div>
-
   <header>
-
-    <!-- NAV COM LINKS (sem línguas, agora estão no canto) -->
     <nav class="nav">
       <div class="nav-links">
         <a href="#sobre">Sobre</a>
@@ -422,113 +241,20 @@
       </div>
     </nav>
 
-    <!-- LOGO COM PAINEL DOURADO E ANIMAÇÃO -->
-    <div class="header-logo">
-      <div class="logo-panel">
-        <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
-             alt="Mafra Backyard Ultra logo">
-      </div>
+    <div class="logo-panel">
+      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
     </div>
 
-    <div class="logo-text header-subtitle">Tapada Militar · Mafra</div>
+    <h1>Mafra Backyard Ultra</h1>
+    <div class="subtitle">Backyard Ultra • Portugal</div>
 
-    <h1 class="header-title">Mafra Backyard Ultra</h1>
-
-    <div class="subtitle header-subtitle">Backyard Ultra • Portugal</div>
-
-    <p class="tagline">
-      Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora para cada volta.
-    </p>
-
-    <div class="event-info">
-      <span><strong>Data</strong> a definir</span>
-      <span><strong>Local</strong> Tapada Militar, Mafra</span>
-      <span><strong>Zona base</strong> Gimnodesportivo Militar</span>
-    </div>
+    <p class="tagline">Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora por volta.</p>
 
     <div class="buttons">
       <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
-      <a href="https://link-para-inscricoes.com" class="btn btn-primary">Inscrições</a>
+      <a href="#" class="btn btn-primary">Inscrições</a>
     </div>
-
   </header>
-
-  <main>
-
-    <section id="sobre">
-      <h2>Sobre a prova</h2>
-      <h3>Mental, simples, brutal.</h3>
-      <p>
-        A Mafra Backyard Ultra – Tapada Militar segue o formato oficial Backyard Ultra:
-        uma volta de <strong>6,706 km</strong> por hora, até restar apenas um atleta.
-      </p>
-      <p>
-        O lema é simples: <strong>“só mais uma volta”</strong>.
-      </p>
-    </section>
-
-    <section id="local">
-      <h2>Local &amp; zona base</h2>
-      <h3>Tapada Militar &amp; Gimnodesportivo Militar</h3>
-      <p>
-        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, em ambiente controlado
-        e com um enquadramento único.
-      </p>
-      <ul>
-        <li>Espaço interior amplo e acolhedor</li>
-        <li>Pontos de água e eletricidade</li>
-        <li>Zonas de descanso para atletas e equipas de apoio</li>
-        <li>Proteção do vento e da chuva</li>
-      </ul>
-      <div class="highlight-box">
-        A proximidade entre a zona de descanso e a linha de partida facilita a rotina:
-        comer, trocar de roupa, descansar alguns minutos e voltar ao loop seguinte.
-      </div>
-    </section>
-
-    <section id="percurso">
-      <h2>Percurso &amp; altimetria</h2>
-      <h3>Loop de 6,706 km — 125 m D+</h3>
-      <p>
-        O percurso combina trilhos e estradões da Tapada Militar, com:
-      </p>
-      <ul>
-        <li>Subidas progressivas</li>
-        <li>Descidas fluídas</li>
-        <li>Regresso final em <strong>subida ligeira</strong> até à base</li>
-      </ul>
-      <p>
-        A altimetria aproximada é de <strong>125 m de desnível positivo</strong> por volta.
-      </p>
-    </section>
-
-    <section id="inscricoes">
-      <h2>Inscrições</h2>
-      <h3>Vagas limitadas</h3>
-      <p>
-        As inscrições serão feitas através da plataforma oficial de cronometragem/inscrições.
-      </p>
-      <p>
-        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui para aceder à página de inscrições</strong></a>
-        <br>
-        (o link será atualizado assim que a plataforma estiver disponível).
-      </p>
-    </section>
-
-    <section id="contactos">
-      <h2>Contactos</h2>
-      <h3>Organização</h3>
-      <p>
-        Organização: <strong>Amigos do Atletismo de Mafra</strong><br>
-        E-mail: <a href="mailto:aamafra@aamafra.com">aamafra@aamafra.com</a>
-      </p>
-    </section>
-
-  </main>
-
-  <footer>
-    Mafra Backyard Ultra · Tapada Militar · Organização: Amigos do Atletismo de Mafra
-  </footer>
 
 </body>
 </html>
