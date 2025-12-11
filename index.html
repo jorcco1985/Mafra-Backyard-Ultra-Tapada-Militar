@@ -31,19 +31,21 @@
       overflow-x: hidden;
     }
 
-    /* 🔥 Fundo animado estilo militar (folhas) */
+    /* 🔥 Fundo animado camuflado desfocado */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: -10px;
+      left: -10px;
+      width: calc(100% + 20px);
+      height: calc(100% + 20px);
       background: url("https://i.imgur.com/YVh3pFI.png");
-      opacity: 0.18;
+      opacity: 0.2;
       z-index: -1;
       background-size: 300%;
       animation: movebg 22s infinite linear;
+      filter: blur(4px);
+      transform: scale(1.02);
     }
 
     @keyframes movebg {
@@ -52,22 +54,62 @@
       100% { background-position: 0% 0%; }
     }
 
-    header {
-      padding: 2rem 1.5rem 2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top, #262a30cc, #050607dd);
-      backdrop-filter: blur(4px);
+    /* 🌍 Links PT / EN no topo esquerdo */
+    .corner-lang {
+      position: fixed;
+      top: 0.8rem;
+      left: 0.9rem;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    /* NAV COM LINKS + LÍNGUA */
+    .corner-lang-link {
+      padding: 0.1rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      color: var(--muted);
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .corner-lang-link.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .corner-lang-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    header {
+      padding: 2.7rem 1.5rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      /* 💛 Painel de cima com fundo dourado */
+      background: radial-gradient(circle at top,
+        rgba(201,164,73,0.45),
+        rgba(5,6,7,0.95)
+      );
+      backdrop-filter: blur(6px);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+    }
+
+    /* NAV COM LINKS */
     .nav {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       font-size: 0.8rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -89,37 +131,6 @@
     .nav-links a:hover {
       color: var(--accent);
       border-color: var(--accent);
-    }
-
-    .lang-toggle {
-      display: flex;
-      gap: 0.4rem;
-      align-items: center;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .lang-toggle .lang {
-      padding: 0.1rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .lang-toggle .lang.active {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .lang-toggle a.lang {
-      color: var(--muted);
-    }
-
-    .lang-toggle a.lang:hover {
-      color: var(--accent);
     }
 
     /* ANIMAÇÕES DO HEADER */
@@ -374,6 +385,10 @@
       .nav { justify-content: center; }
       .nav-links { justify-content: center; }
       .social-bar { right: 0.4rem; }
+      .corner-lang {
+        top: 0.6rem;
+        left: 0.6rem;
+      }
     }
 
   </style>
@@ -381,8 +396,14 @@
 
 <body>
 
+  <!-- 🌍 Links PT / EN topo esquerdo -->
+  <div class="corner-lang">
+    <a href="index.html" class="corner-lang-link active">PT</a>
+    <span>·</span>
+    <a href="en.html" class="corner-lang-link">EN</a>
+  </div>
+
   <!-- BARRA SOCIAL FIXA (Facebook / Instagram) -->
-  <!-- Troca os href pelos links reais das tuas páginas -->
   <div class="social-bar">
     <a href="#" class="social-icon" aria-label="Facebook">f</a>
     <a href="#" class="social-icon" aria-label="Instagram">◎</a>
@@ -390,7 +411,7 @@
 
   <header>
 
-    <!-- NAV COM LINKS + LÍNGUAS -->
+    <!-- NAV COM LINKS (sem línguas, agora estão no canto) -->
     <nav class="nav">
       <div class="nav-links">
         <a href="#sobre">Sobre</a>
@@ -398,11 +419,6 @@
         <a href="#percurso">Percurso</a>
         <a href="#inscricoes">Inscrições</a>
         <a href="#contactos">Contactos</a>
-      </div>
-      <div class="lang-toggle">
-        <span class="lang active">PT</span>
-        <span>·</span>
-        <a href="en.html" class="lang">EN</a>
       </div>
     </nav>
 
@@ -437,7 +453,6 @@
 
   </header>
 
-
   <main>
 
     <section id="sobre">
@@ -451,7 +466,6 @@
         O lema é simples: <strong>“só mais uma volta”</strong>.
       </p>
     </section>
-
 
     <section id="local">
       <h2>Local &amp; zona base</h2>
@@ -472,7 +486,6 @@
       </div>
     </section>
 
-
     <section id="percurso">
       <h2>Percurso &amp; altimetria</h2>
       <h3>Loop de 6,706 km — 125 m D+</h3>
@@ -489,7 +502,6 @@
       </p>
     </section>
 
-
     <section id="inscricoes">
       <h2>Inscrições</h2>
       <h3>Vagas limitadas</h3>
@@ -503,7 +515,6 @@
       </p>
     </section>
 
-
     <section id="contactos">
       <h2>Contactos</h2>
       <h3>Organização</h3>
@@ -514,7 +525,6 @@
     </section>
 
   </main>
-
 
   <footer>
     Mafra Backyard Ultra · Tapada Militar · Organização: Amigos do Atletismo de Mafra
