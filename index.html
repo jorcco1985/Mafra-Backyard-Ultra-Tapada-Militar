@@ -18,7 +18,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -29,7 +28,7 @@
       overflow-x: hidden;
     }
 
-    /* Fundo camuflado DOURADO */
+    /* Fundo camuflado dourado */
     body::before {
       content: "";
       position: fixed;
@@ -52,7 +51,7 @@
       100% { background-position: 0% 0%; }
     }
 
-    /* LÍNGUAS */
+    /* Línguas canto esquerdo */
     .corner-lang {
       position: fixed;
       top: 0.8rem;
@@ -100,6 +99,7 @@
       backdrop-filter: blur(8px);
     }
 
+    /* MENU - AGORA A PRETO */
     .nav {
       display: flex;
       justify-content: center;
@@ -113,15 +113,18 @@
 
     .nav-links a {
       text-decoration: none;
-      color: var(--accent);
+      color: #000000;     /* PRETO */
+      font-weight: 700;
       border-bottom: 1px solid transparent;
+      padding-bottom: 0.1rem;
     }
+
     .nav-links a:hover {
-      color: var(--gold);
+      color: var(--gold);   /* Dourado */
       border-color: var(--gold);
     }
 
-    /* Logo painel dourado */
+    /* Painel do logo dourado */
     .logo-panel {
       display: inline-block;
       padding: 1rem;
@@ -155,10 +158,7 @@
 
     .tagline { color: var(--muted); }
 
-    /* INFO */
-    .event-info span strong {
-      color: var(--gold);
-    }
+    .event-info span strong { color: var(--gold); }
     .event-info span { color: var(--muted); }
 
     /* Botões */
@@ -221,6 +221,7 @@
 
   </style>
 </head>
+
 <body>
 
   <!-- LÍNGUAS -->
@@ -242,13 +243,12 @@
     </nav>
 
     <div class="logo-panel">
-      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
+      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg">
     </div>
 
     <h1>Mafra Backyard Ultra</h1>
     <div class="subtitle">Backyard Ultra • Portugal</div>
-
-    <p class="tagline">Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora por volta.</p>
+    <p class="tagline">Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1h por volta.</p>
 
     <div class="buttons">
       <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
