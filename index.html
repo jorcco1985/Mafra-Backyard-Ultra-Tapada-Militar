@@ -13,6 +13,9 @@
       --text: #f5f5f5;
       --muted: #a0a4aa;
       --border: #262a30;
+      --gold: #c9a449;
+      --gold-dark: #8c6f2b;
+      --green-panel: #1f2b1a;
     }
 
     * { box-sizing: border-box; }
@@ -30,23 +33,22 @@
       position: relative;
     }
 
-    /* 🔥 CAMUFLADO MILITAR EM CSS (sem imagens) */
+    /* 🔥 Camuflado militar animado em CSS */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
       background:
-        radial-gradient(circle at 10% 20%, #4a5f34 0, #4a5f34 22%, transparent 23%),
-        radial-gradient(circle at 80% 0%,  #38452a 0, #38452a 24%, transparent 25%),
-        radial-gradient(circle at 0% 50%,  #2f3b24 0, #2f3b24 20%, transparent 21%),
-        radial-gradient(circle at 80% 60%, #6b7c3b 0, #6b7c3b 22%, transparent 23%),
-        radial-gradient(circle at 20% 90%, #554128 0, #554128 20%, transparent 21%),
-        radial-gradient(circle at 50% 50%, #1c2318 0, #1c2318 60%, transparent 61%);
+        repeating-linear-gradient(45deg, #3b4d28 0 12px, #3b4d28 12px 24px, transparent 24px 48px),
+        repeating-linear-gradient(-45deg, #27331d 0 16px, #27331d 16px 32px, transparent 32px 64px),
+        radial-gradient(circle at 20% 20%, #556b2f 0 45px, transparent 46px),
+        radial-gradient(circle at 80% 60%, #6b4423 0 55px, transparent 56px),
+        radial-gradient(circle at 10% 80%, #1f2618 0 40px, transparent 41px);
       background-color: #050607;
-      background-size: 180% 180%;
-      opacity: 0.4;
-      animation: movebg 36s infinite alternate ease-in-out;
+      background-size: 220% 220%;
+      opacity: 0.5;
+      animation: movebg 40s infinite alternate ease-in-out;
     }
 
     @keyframes movebg {
@@ -56,35 +58,73 @@
     }
 
     header {
-      padding: 2rem 1.5rem 2rem;
+      padding: 1.5rem 1.5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
       background: radial-gradient(circle at top, #262a30ee, #050607f5);
       backdrop-filter: blur(4px);
     }
 
-    /* NAV SIMPLES NO TOPO */
+    /* NAV TOPO */
     .nav {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
       font-size: 0.8rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
-    .nav a {
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .nav-links a {
       text-decoration: none;
       color: var(--muted);
       border-bottom: 1px solid transparent;
       padding-bottom: 0.1rem;
     }
 
-    .nav a:hover {
+    .nav-links a:hover {
       color: var(--accent);
       border-color: var(--accent);
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .lang-toggle .lang {
+      padding: 0.1rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .lang-toggle .lang.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .lang-toggle a.lang {
+      color: var(--muted);
+    }
+
+    .lang-toggle a.lang:hover {
+      color: var(--accent);
     }
 
     /* ANIMAÇÕES DO HEADER */
@@ -124,56 +164,84 @@
       to   { opacity: 1; }
     }
 
+    /* PAINEL DO LOGO A DOURADO */
+    .logo-panel {
+      max-width: 420px;
+      margin: 0 auto 1.5rem;
+      padding: 0.9rem 1rem 0.7rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    }
+
+    .logo-panel img {
+      max-width: 260px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.35);
+    }
+
+    /* PAINEL DE TEXTO A VERDE TROPAS */
+    .hero-panel {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1.2rem 1.5rem 1.5rem;
+      border-radius: 16px;
+      background: radial-gradient(circle at top, #314026, #1b2417);
+      border: 1px solid rgba(0,0,0,0.6);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.55);
+    }
+
     .logo-text {
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.35em;
-      color: var(--muted);
-      margin-top: 0.75rem;
+      color: #dbdfcc;
+      margin-top: 0.2rem;
       margin-bottom: 0.6rem;
     }
 
     h1 {
       margin: 0;
-      font-size: 2.6rem;
+      font-size: 2.3rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
     .subtitle {
       margin-top: 0.4rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--muted);
+      color: #c2c8b5;
     }
 
     .tagline {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: var(--muted);
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      color: #e0e3d8;
     }
 
     .event-info {
-      margin-top: 1.5rem;
+      margin-top: 1.3rem;
       display: flex;
       justify-content: center;
       gap: 2rem;
       flex-wrap: wrap;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--muted);
+      color: #c0c6b6;
     }
 
     .event-info span strong {
       display: block;
       font-size: 0.95rem;
-      color: var(--text);
+      color: #ffffff;
     }
 
     .buttons {
-      margin-top: 2rem;
+      margin-top: 1.7rem;
       display: flex;
       justify-content: center;
       gap: 1rem;
@@ -181,12 +249,12 @@
     }
 
     .btn {
-      padding: 0.8rem 1.8rem;
+      padding: 0.75rem 1.7rem;
       border-radius: 999px;
       border: 1px solid var(--accent);
       text-decoration: none;
       text-transform: uppercase;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 0.2em;
       cursor: pointer;
       display: inline-block;
@@ -271,10 +339,46 @@
       margin-top: 2rem;
     }
 
+    /* BARRA SOCIAL DIREITA */
+    .social-bar {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      z-index: 20;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid #ffffff55;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: #ffffff;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+    }
+
+    .social-icon:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
     @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
+      h1 { font-size: 1.8rem; }
       .event-info { gap: 1rem; }
-      .nav { gap: 0.8rem; }
+      .nav { justify-content: center; }
+      .nav-links { justify-content: center; }
+      .social-bar {
+        right: 0.4rem;
+      }
     }
 
   </style>
@@ -282,43 +386,59 @@
 
 <body>
 
+  <!-- BARRA SOCIAL FIXA -->
+  <div class="social-bar">
+    <!-- Troca os href pelos links reais -->
+    <a href="#" class="social-icon" aria-label="Facebook">f</a>
+    <a href="#" class="social-icon" aria-label="Instagram">◎</a>
+  </div>
+
   <header>
 
     <!-- NAV TOPO -->
     <nav class="nav">
-      <a href="#sobre">Sobre</a>
-      <a href="#local">Local</a>
-      <a href="#percurso">Percurso</a>
-      <a href="#inscricoes">Inscrições</a>
-      <a href="#contactos">Contactos</a>
+      <div class="nav-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#local">Local</a>
+        <a href="#percurso">Percurso</a>
+        <a href="#inscricoes">Inscrições</a>
+        <a href="#contactos">Contactos</a>
+      </div>
+      <div class="lang-toggle">
+        <span class="lang active">PT</span>
+        <span>·</span>
+        <a href="en.html" class="lang">EN</a>
+      </div>
     </nav>
 
-    <!-- LOGO COM ANIMAÇÃO -->
-    <div class="header-logo" style="text-align:center;">
+    <!-- PAINEL DO LOGO A DOURADO -->
+    <div class="logo-panel header-logo">
       <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
-           alt="Mafra Backyard Ultra logo"
-           style="max-width:280px; margin-bottom: 1rem; border-radius: 12px;">
+           alt="Mafra Backyard Ultra logo">
     </div>
 
-    <div class="logo-text header-subtitle">Tapada Militar · Mafra</div>
+    <!-- PAINEL DO TEXTO A VERDE TROPAS -->
+    <div class="hero-panel">
+      <div class="logo-text header-subtitle">Tapada Militar · Mafra</div>
 
-    <h1 class="header-title">Mafra Backyard Ultra</h1>
+      <h1 class="header-title">Mafra Backyard Ultra</h1>
 
-    <div class="subtitle header-subtitle">Backyard Ultra • Portugal</div>
+      <div class="subtitle header-subtitle">Backyard Ultra • Portugal</div>
 
-    <p class="tagline">
-      Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora para cada volta.
-    </p>
+      <p class="tagline">
+        Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora para cada volta.
+      </p>
 
-    <div class="event-info">
-      <span><strong>Data</strong> a definir</span>
-      <span><strong>Local</strong> Tapada Militar, Mafra</span>
-      <span><strong>Zona base</strong> Gimnodesportivo Militar</span>
-    </div>
+      <div class="event-info">
+        <span><strong>Data</strong> a definir</span>
+        <span><strong>Local</strong> Tapada Militar, Mafra</span>
+        <span><strong>Zona base</strong> Gimnodesportivo Militar</span>
+      </div>
 
-    <div class="buttons">
-      <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
-      <a href="https://link-para-inscricoes.com" class="btn btn-primary">Inscrições</a>
+      <div class="buttons">
+        <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
+        <a href="https://link-para-inscricoes.com" class="btn btn-primary">Inscrições</a>
+      </div>
     </div>
 
   </header>
