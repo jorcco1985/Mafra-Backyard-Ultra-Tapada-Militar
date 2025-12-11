@@ -17,6 +17,10 @@
 
     * { box-sizing: border-box; }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -47,32 +51,93 @@
     }
 
     header {
-      padding: 3rem 1.5rem 2rem;
+      padding: 2rem 1.5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
       background: radial-gradient(circle at top, #262a30cc, #050607dd);
       backdrop-filter: blur(4px);
     }
 
+    /* NAV SIMPLES NO TOPO */
+    .nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      border-bottom: 1px solid transparent;
+      padding-bottom: 0.1rem;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ANIMAÇÕES DO HEADER */
+    .header-logo {
+      animation: fadeInDown 1.2s ease-out forwards;
+      opacity: 0;
+    }
+
+    .header-title {
+      animation: fadeInUp 1.2s ease-out forwards;
+      opacity: 0;
+      animation-delay: 0.3s;
+    }
+
+    .header-subtitle, .tagline, .event-info, .buttons {
+      animation: fadeIn 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .header-subtitle { animation-delay: 0.5s; }
+    .tagline        { animation-delay: 0.7s; }
+    .event-info     { animation-delay: 0.9s; }
+    .buttons        { animation-delay: 1.1s; }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     .logo-text {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.35em;
       color: var(--muted);
-      margin-top: 0.5rem;
-      margin-bottom: 0.75rem;
+      margin-top: 0.75rem;
+      margin-bottom: 0.6rem;
     }
 
     h1 {
       margin: 0;
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
     .subtitle {
       margin-top: 0.4rem;
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
@@ -136,7 +201,7 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
-      background: #050607aa;
+      background: #050607cc;
       backdrop-filter: blur(6px);
       border-radius: 12px;
       margin-top: 2rem;
@@ -204,6 +269,7 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       .event-info { gap: 1rem; }
+      .nav { gap: 0.8rem; }
     }
 
   </style>
@@ -213,18 +279,27 @@
 
   <header>
 
-    <!-- LOGO MAIOR -->
-    <div style="text-align:center;">
+    <!-- NAV SIMPLES NO TOPO -->
+    <nav class="nav">
+      <a href="#sobre">Sobre</a>
+      <a href="#local">Local</a>
+      <a href="#percurso">Percurso</a>
+      <a href="#inscricoes">Inscrições</a>
+      <a href="#contactos">Contactos</a>
+    </nav>
+
+    <!-- LOGO COM ANIMAÇÃO -->
+    <div class="header-logo" style="text-align:center;">
       <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
            alt="Mafra Backyard Ultra logo"
            style="max-width:280px; margin-bottom: 1rem; border-radius: 12px;">
     </div>
 
-    <div class="logo-text">Tapada Militar · Mafra</div>
+    <div class="logo-text header-subtitle">Tapada Militar · Mafra</div>
 
-    <h1>Mafra Backyard Ultra</h1>
+    <h1 class="header-title">Mafra Backyard Ultra</h1>
 
-    <div class="subtitle">Backyard Ultra • Portugal</div>
+    <div class="subtitle header-subtitle">Backyard Ultra • Portugal</div>
 
     <p class="tagline">
       Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora para cada volta.
@@ -254,7 +329,7 @@
         uma volta de <strong>6,706 km</strong> por hora, até restar apenas um atleta.
       </p>
       <p>
-        O lema é simples: <strong>"só mais uma volta"</strong>.
+        O lema é simples: <strong>“só mais uma volta”</strong>.
       </p>
     </section>
 
@@ -263,7 +338,8 @@
       <h2>Local &amp; zona base</h2>
       <h3>Tapada Militar &amp; Gimnodesportivo Militar</h3>
       <p>
-        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, um ambiente seguro e único.
+        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, em ambiente controlado
+        e com um enquadramento único.
       </p>
       <ul>
         <li>Espaço interior amplo e acolhedor</li>
@@ -271,6 +347,10 @@
         <li>Zonas de descanso para atletas e equipas de apoio</li>
         <li>Proteção do vento e da chuva</li>
       </ul>
+      <div class="highlight-box">
+        A proximidade entre a zona de descanso e a linha de partida facilita a rotina:
+        comer, trocar de roupa, descansar alguns minutos e voltar ao loop seguinte.
+      </div>
     </section>
 
 
@@ -278,13 +358,16 @@
       <h2>Percurso &amp; altimetria</h2>
       <h3>Loop de 6,706 km — 125 m D+</h3>
       <p>
-        O percurso combina trilhos e estradões, com:
+        O percurso combina trilhos e estradões da Tapada Militar, com:
       </p>
       <ul>
         <li>Subidas progressivas</li>
         <li>Descidas fluídas</li>
-        <li>Regresso final em subida ligeira</li>
+        <li>Regresso final em <strong>subida ligeira</strong> até à base</li>
       </ul>
+      <p>
+        A altimetria aproximada é de <strong>125 m de desnível positivo</strong> por volta.
+      </p>
     </section>
 
 
@@ -292,10 +375,12 @@
       <h2>Inscrições</h2>
       <h3>Vagas limitadas</h3>
       <p>
-        As inscrições serão feitas pela plataforma oficial.
+        As inscrições serão feitas através da plataforma oficial de cronometragem/inscrições.
       </p>
       <p>
-        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui</strong></a>
+        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui para aceder à página de inscrições</strong></a>
+        <br>
+        (o link será atualizado assim que a plataforma estiver disponível).
       </p>
     </section>
 
