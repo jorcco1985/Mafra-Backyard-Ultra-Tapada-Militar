@@ -1,263 +1,463 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mafra Backyard Ultra – Tapada Militar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Mafra Backyard Ultra – prova de resistência em formato Backyard Ultra na Tapada Militar de Mafra." />
+  <!-- TODO: replace with your canonical URL -->
+  <link rel="canonical" href="https://example.com/" />
+  <meta name="theme-color" content="#111111" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mafra Backyard Ultra – Tapada Militar" />
+  <meta property="og:description" content="Mafra Backyard Ultra – prova de resistência em formato Backyard Ultra na Tapada Militar de Mafra." />
+  <!-- TODO: set a real OG image -->
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
-    :root {
-      --bg: #0a0a09;
-      --bg-alt: #141411;
-      --accent: #485A2F;       /* Verde militar */
-      --text: #f5f5f5;
-      --muted: #d2d2c7;
-      --border: #3a3a32;
-      --gold: #A68B3B;         /* Dourado militar */
-      --gold-dark: #6F5520;    /* Dourado mais escuro */
+    :root{
+      --bg: #f5f5f5;
+      --surface: #fff;
+      --muted: #666;
+      --text: #111;
+      --accent: #ffd04a;
+      --dark-1: #111;
+      --dark-2: #444;
+      --container: 980px;
+      --radius: 1rem;
+      --gap: 1.5rem;
+      --transition: 180ms ease;
+    }
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      :root { --transition: 0ms; }
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding-bottom:2rem;
     }
 
-    /* Fundo camuflado dourado */
-    body::before {
-      content: "";
-      position: fixed;
-      top: -10px;
-      left: -10px;
-      width: calc(100% + 20px);
-      height: calc(100% + 20px);
-      background: url("https://i.imgur.com/YVh3pFI.png");
-      opacity: 0.23;
-      z-index: -1;
-      background-size: 260%;
-      animation: movebg 22s infinite linear;
-      filter: sepia(70%) hue-rotate(20deg) brightness(1.1) blur(4px);
-      transform: scale(1.02);
+    a{color:inherit}
+    .container{max-width:var(--container);margin:0 auto;padding:0 1.25rem}
+
+    /* Skip link */
+    .skip-link{
+      position:absolute;
+      left:1rem;
+      top:0.75rem;
+      background:#000;
+      color:#fff;
+      padding:0.4rem 0.6rem;
+      border-radius:6px;
+      z-index:999;
+      transform:translateY(-120%);
+      transition:transform var(--transition);
+    }
+    .skip-link:focus{transform:translateY(0);outline:3px solid var(--accent)}
+
+    header{
+      background:linear-gradient(135deg,var(--dark-1),var(--dark-2));
+      color:#fff;
+      padding:2.25rem 0 3rem;
+    }
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:1.75rem;
+    }
+    .logo{font-weight:700;letter-spacing:.06em;font-size:.95rem;text-transform:uppercase}
+    .nav-list{
+      list-style:none;
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-left:auto;
+    }
+    .nav-list a{color: #eee; opacity:.95; font-size:0.95rem}
+    .nav-list a:hover{opacity:1;text-decoration:underline}
+    .nav-list a:focus{outline:3px solid rgba(255,208,74,0.25);outline-offset:3px}
+
+    /* Mobile menu */
+    .menu-toggle{
+      display:none;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff;
+      padding:0.45rem;
+      border-radius:8px;
+      cursor:pointer;
     }
 
-    @keyframes movebg {
-      0% { background-position: 0% 0%; }
-      50% { background-position: 80% 80%; }
-      100% { background-position: 0% 0%; }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,3fr) minmax(0,2fr);
+      gap:2rem;
+      align-items:center;
     }
+    .tagline{font-size:0.9rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:0.4rem}
+    .hero-title{font-size:clamp(2rem,3vw+1rem,2.8rem);font-weight:800;margin-bottom:0.8rem;color:#fff}
+    .hero-subtitle{font-size:1.05rem;opacity:.95;margin-bottom:1rem;color:#eee}
+    .hero-meta{font-size:0.95rem;margin-bottom:1rem;color:#eee}
+    .hero-meta span{display:inline-block;margin-right:1rem}
 
-    /* Línguas canto esquerdo */
-    .corner-lang {
-      position: fixed;
-      top: 0.8rem;
-      left: 0.9rem;
-      z-index: 40;
-      display: flex;
-      gap: 0.3rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
+    .btn-primary{
+      display:inline-block;padding:0.75rem 1.4rem;border-radius:999px;background:var(--accent);color:var(--dark-1);font-weight:600;font-size:0.95rem;
+      text-decoration:none;
     }
+    .btn-primary:hover{filter:brightness(1.05)}
 
-    .corner-lang-link {
-      padding: 0.1rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      text-decoration: none;
-      color: var(--muted);
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
+    .hero-card{
+      padding:1.25rem;border-radius:var(--radius);background:rgba(0,0,0,0.12);border:1px solid rgba(255,255,255,0.10);font-size:0.95rem;
     }
+    .hero-card h3{font-size:1rem;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:.08em;opacity:.95}
+    .hero-card ul{list-style:none;padding-left:0}
+    .hero-card li::before{content:"• ";color:var(--accent)}
 
-    .corner-lang-link.active {
-      border-color: var(--accent);
-      color: var(--accent);
+    main{padding:2.25rem 0 2.5rem}
+    section{margin-bottom:1.75rem;background:var(--surface);border-radius:var(--radius);padding:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.04)}
+    section h2{font-size:1.35rem;margin-bottom:0.6rem}
+    section h3{font-size:1.05rem;margin:1rem 0 0.4rem}
+    p{margin-bottom:0.6rem;font-size:0.97rem}
+    ul{margin-left:1.2rem;margin-bottom:0.5rem}
+    li{margin-bottom:0.35rem;font-size:0.95rem}
+    footer{text-align:center;font-size:0.85rem;color:var(--muted);padding:1.5rem 1rem 2rem}
+
+    .pill-list{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.4rem}
+    .pill{border-radius:999px;border:1px solid #eee;padding:0.2rem 0.7rem;font-size:0.8rem;background:#fafafa}
+
+    .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:0.8rem}
+    .price-card{border-radius:0.9rem;border:1px solid #eee;padding:0.8rem 0.9rem;background:#fcfcfc;font-size:0.95rem}
+
+    .contact-list p{margin-bottom:0.35rem}
+
+    /* Focus-visible polyfill for browsers lacking :focus-visible */
+    :focus{outline: none}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+    /* Responsive */
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr;gap:1.25rem}
+      .menu-toggle{display:inline-block}
+      .nav-list{display:none;width:100%;padding-top:0.75rem}
+      .nav-list[aria-hidden="false"]{display:flex;flex-direction:column;gap:0.6rem}
+      header{padding-bottom:2rem}
     }
-
-    .corner-lang-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* HEADER dourado */
-    header {
-      padding: 2.7rem 1.5rem 2rem;
-      text-align: center;
-      border-bottom: 1px solid var(--gold-dark);
-      background: linear-gradient(
-        180deg,
-        rgba(166,139,59,0.5),
-        rgba(20,20,17,0.95)
-      );
-      box-shadow: 0 14px 40px rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-    }
-
-    /* MENU - A PRETO */
-    .nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.6rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #000000;     /* PRETO */
-      font-weight: 700;
-      border-bottom: 1px solid transparent;
-      padding-bottom: 0.1rem;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);   /* Dourado */
-      border-color: var(--gold);
-    }
-
-    /* LOGO sem dourado atrás */
-    .logo-panel {
-      display: inline-block;
-      padding: 0;
-      background: transparent;
-      box-shadow: none;
-      margin-bottom: 1rem;
-    }
-
-    /* LOGO maior */
-    .logo-panel img {
-      max-width: 380px;
-      width: 100%;
-      border-radius: 12px;
-      border: none;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-shadow: 0 0 8px rgba(166,139,59,0.5);
-    }
-
-    /* SUBTÍTULO LIMPO */
-    .subtitle {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-top: 0.6rem;
-      font-size: 1rem;
-    }
-
-    .tagline { color: var(--muted); }
-
-    .event-info span strong { color: var(--gold); }
-    .event-info span { color: var(--muted); }
-
-    /* Botões */
-    .btn {
-      padding: 0.8rem 1.8rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-    }
-
-    .btn-primary {
-      border: 1px solid var(--gold-dark);
-      background: var(--gold);
-      color: #201e15;
-      font-weight: bold;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-dark);
-      color: white;
-    }
-
-    .btn-outline {
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      background: transparent;
-    }
-
-    .btn-outline:hover {
-      background: var(--accent);
-      color: #f4f4f4;
-    }
-
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem 3rem;
-      background: rgba(20,20,17,0.85);
-      border-radius: 12px;
-      border: 1px solid var(--gold-dark);
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    }
-
-    section h2 { color: var(--accent); }
-    section h3 { color: var(--gold); }
-
-    .highlight-box {
-      background: rgba(70,70,60,0.4);
-      border: 1px solid var(--gold-dark);
-      color: #e8e6d9;
-    }
-
-    footer {
-      border-top: 1px solid var(--gold-dark);
-      padding: 1rem;
-      text-align: center;
-      color: var(--muted);
-    }
-
   </style>
 </head>
-
 <body>
-
-  <!-- LÍNGUAS -->
-  <div class="corner-lang">
-    <a href="index.html" class="corner-lang-link active">PT</a>
-    <span>·</span>
-    <a href="en.html" class="corner-lang-link">EN</a>
-  </div>
+  <a class="skip-link" href="#maincontent">Saltar para o conteúdo</a>
 
   <header>
+    <div class="container">
+      <nav aria-label="Navegação principal" role="navigation">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <div class="logo">Mafra Backyard Ultra</div>
+          <!-- Mobile menu toggle -->
+          <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Abrir menu">
+            ☰
+          </button>
+        </div>
 
-    <!-- MENU -->
-    <nav class="nav">
-      <div class="nav-links">
-        <a href="#sobre">Sobre</a>
-        <a href="#local">Local</a>
-        <a href="#percurso">Percurso</a>
-        <a href="#inscricoes">Inscrições</a>
-        <a href="#contactos">Contactos</a>
+        <ul id="primaryNav" class="nav-list" aria-hidden="true">
+          <li><a href="#evento">O Evento</a></li>
+          <li><a href="#formato">Formato</a></li>
+          <li><a href="#percurso">Percurso</a></li>
+          <li><a href="#inscricoes">Inscrições</a></li>
+          <li><a href="#contactos">Contactos</a></li>
+        </ul>
+      </nav>
+
+      <div class="hero" role="region" aria-labelledby="main-heading">
+        <div>
+          <div class="tagline">Tapada Militar de Mafra</div>
+          <h1 id="main-heading" class="hero-title">Mafra Backyard Ultra – Tapada Militar</h1>
+          <p class="hero-subtitle">
+            Uma Backyard Ultra em cenário militar histórico e exclusivo, pensada para quem quer
+            testar os seus limites com máximo conforto, segurança e apoio à volta de cada loop.
+          </p>
+
+          <div class="hero-meta" aria-hidden="false">
+            <span>📍 Tapada Militar de Mafra</span>
+            <span>📅 Data: a anunciar</span>
+            <span>🔁 Loop de 6,706 km</span>
+          </div>
+
+          <!-- If you have a registration page, replace href with the real link -->
+          <a href="#inscricoes" class="btn-primary">Inscreve-te</a>
+        </div>
+
+        <aside class="hero-card" aria-labelledby="format-heading">
+          <h3 id="format-heading">Formato Backyard Ultra</h3>
+          <ul>
+            <li>Loop de 6,706 km</li>
+            <li>1 hora para completar cada volta</li>
+            <li>Quem não arranca na hora é eliminado</li>
+            <li>Apenas um vencedor: o último atleta em prova</li>
+          </ul>
+        </aside>
       </div>
-    </nav>
-
-    <!-- LOGO -->
-    <div class="logo-panel">
-      <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg" alt="Mafra Backyard Ultra">
     </div>
-
-    <h1>Mafra Backyard Ultra</h1>
-
-    <!-- SUBTÍTULO FINAL -->
-    <div class="subtitle">Backyard Ultra • Portugal</div>
-
   </header>
 
+  <main id="maincontent" tabindex="-1">
+    <div class="container">
+      <section id="evento">
+        <h2>O Evento</h2>
+        <p>
+          A Mafra Backyard Ultra nasce de uma oportunidade única: realizar uma prova de resistência em
+          formato Backyard Ultra dentro da Tapada Militar de Mafra. Este contexto oferece um ambiente
+          controlado, protegido e historicamente rico, ideal para uma experiência de ultra-endurance
+          com elevado nível de conforto, segurança e apoio institucional.
+        </p>
+        <p>
+          O objetivo é criar um evento de referência nacional, capaz de atrair atletas experientes e
+          de elite, reforçar a visibilidade da associação organizadora e consolidar uma prova que
+          possa crescer ano após ano.
+        </p>
+      </section>
+
+      <section id="formato">
+        <h2>Formato Backyard Ultra</h2>
+        <p>
+          A Backyard Ultra é uma prova de resistência criada por Laz Lake (EUA) e é hoje um dos
+          formatos de ultra-endurance com maior crescimento a nível mundial.
+        </p>
+        <ul>
+          <li>Loop oficial de 6,706 km</li>
+          <li>1 hora para concluir cada volta</li>
+          <li>Quem não termina a tempo ou não arranca para a volta seguinte é eliminado</li>
+          <li>Vence o último atleta a conseguir completar um loop dentro do tempo</li>
+        </ul>
+        <p>
+          Este modelo exige disciplina, estratégia, gestão de sono e nutrição, bem como um forte
+          espírito comunitário entre atletas, equipas de apoio e organização.
+        </p>
+      </section>
+
+      <section id="tapada">
+        <h2>Porquê a Tapada Militar de Mafra?</h2>
+        <p>
+          A Tapada Militar de Mafra é um cenário absolutamente exclusivo no panorama nacional. É o
+          único local em Portugal onde uma Backyard Ultra pode decorrer em ambiente militar
+          controlado, histórico e protegido.
+        </p>
+        <ul>
+          <li>Identidade única e irrepetível para o evento</li>
+          <li>Infraestrutura militar robusta e preparada</li>
+          <li>Conforto superior para atletas e equipas de apoio</li>
+          <li>Segurança total e controlo de acessos</li>
+          <li>Ambiente privilegiado, rodeado de natureza</li>
+        </ul>
+        <p>
+          Estes fatores colocam a prova num patamar premium, com forte potencial para atrair atletas
+          nacionais e internacionais e gerar grande visibilidade mediática.
+        </p>
+      </section>
+
+      <section id="objetivos">
+        <h2>Objetivos da Prova</h2>
+        <ul>
+          <li>Criar a Backyard Ultra mais diferenciada de Portugal</li>
+          <li>Atrair atletas experientes e integrar o circuito oficial</li>
+          <li>Valorizar a associação organizadora e reforçar relações institucionais</li>
+          <li>Estabelecer uma fonte de receita sustentável para o clube</li>
+        </ul>
+      </section>
+
+      <section id="estrutura">
+        <h2>Estrutura do Evento</h2>
+        <ul>
+          <li>Percurso oficial de 6,706 km integralmente dentro da Tapada Militar</li>
+          <li>Estradão seguro e pouco técnico, ideal para correr de dia e de noite</li>
+          <li>Zona base com WC reais, tendas, iluminação e espaço dedicado a cada atleta</li>
+          <li>Abastecimento reforçado gerido pela organização</li>
+          <li>Equipa médica militar ou socorristas presentes no local</li>
+        </ul>
+      </section>
+
+      <section id="base">
+        <h2>Zona de Abastecimento e Descanso</h2>
+        <p>
+          A zona de abastecimento estará localizada junto ao ponto de partida/chegada, na área
+          militar, e funcionará como o coração da prova.
+        </p>
+        <ul>
+          <li>Espaço coberto e organizado</li>
+          <li>Acesso a água e pontos de abastecimento</li>
+          <li>Área para mesas, cadeiras e material dos atletas</li>
+          <li>Apoio contínuo entre loops</li>
+        </ul>
+        <p>
+          Esta zona é desenhada para proporcionar conforto e eficiência, mantendo os atletas em
+          condições ideais para se manterem em prova o máximo de tempo possível.
+        </p>
+      </section>
+
+      <section id="percurso">
+        <h2>Percurso Oficial &amp; Altimetria</h2>
+        <p>
+          O percurso utiliza trilhos e estradões dentro da Tapada Militar, garantindo fluidez,
+          segurança e um enquadramento natural marcante.
+        </p>
+        <ul>
+          <li>Extensão: 6,706 km</li>
+          <li>Zonas rápidas em estradão</li>
+          <li>Subidas progressivas na primeira metade</li>
+          <li>Descidas longas e fluídas até sensivelmente ao km 4</li>
+          <li>Pequenos ressaltos antes de regressar à base</li>
+        </ul>
+        <h3>Altimetria</h3>
+        <p>
+          A altimetria total do loop é de cerca de <strong>125 m D+</strong>, com:
+        </p>
+        <ul>
+          <li>Subida gradual até perto do km 2</li>
+          <li>Descida prolongada até ao km 4</li>
+          <li>Ressaltos suaves entre os km 4 e 5</li>
+          <li>Subida final suave de regresso à zona base</li>
+        </ul>
+      </section>
+
+      <section id="inscricoes">
+        <h2>Inscrições &amp; Preço</h2>
+        <p>
+          As inscrições serão limitadas para garantir uma experiência de qualidade e segurança
+          dentro do espaço militar.
+        </p>
+
+        <div class="price-grid">
+          <div class="price-card">
+            <strong>Preço Oficial – 50€</strong>
+            <p>Inclui:</p>
+            <ul>
+              <li>T-shirt técnica premium</li>
+              <li>Medalha de alta qualidade</li>
+              <li>Abastecimento reforçado dia e noite</li>
+              <li>WC reais e zona base confortável</li>
+              <li>Seguro desportivo</li>
+              <li>Cronometragem</li>
+              <li>Reportagem fotográfica e vídeo</li>
+              <li>Experiência militar exclusiva</li>
+            </ul>
+          </div>
+
+          <div class="price-card">
+            <strong>Fases de inscrição</strong>
+            <ul>
+              <li>Early Bird: 45 €</li>
+              <li>Fase Normal: 50 €</li>
+              <li>Última semana: 55 €</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="margin-top:0.8rem;">
+          👉 Em breve será disponibilizado o formulário oficial de inscrição.
+        </p>
+      </section>
+
+      <section id="parcerias">
+        <h2>Parcerias &amp; Apoios</h2>
+        <p>
+          A Mafra Backyard Ultra conta com um conjunto de parceiros estratégicos que tornam o
+          evento possível e reforçam a sua credibilidade e segurança.
+        </p>
+        <ul>
+          <li>Escola das Armas / Forças Armadas</li>
+          <li>Câmara Municipal de Mafra</li>
+          <li>Junta de Freguesia</li>
+          <li>Bombeiros Voluntários de Mafra</li>
+          <li>Patrocinadores privados</li>
+          <li>Marcas de nutrição e desporto</li>
+        </ul>
+      </section>
+
+      <section id="contactos">
+        <h2>Contactos</h2>
+        <div class="contact-list">
+          <p><strong>Organização:</strong> Amigos do Atletismo de Mafra</p>
+          <p><strong>Email:</strong> <a href="mailto:info@mafraultra.pt">info@mafraultra.pt</a></p>
+          <p><strong>Telefone:</strong> (colocar número)</p>
+          <p><strong>Redes sociais:</strong> (Instagram / Facebook da prova ou do clube)</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; <span id="year"></span> Mafra Backyard Ultra – Tapada Militar. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script defer>
+    // Simple accessible mobile nav toggle
+    (function(){
+      const btn = document.getElementById('menuToggle');
+      const nav = document.getElementById('primaryNav');
+      if(!btn || !nav) return;
+      function setState(open){
+        btn.setAttribute('aria-expanded', String(open));
+        nav.setAttribute('aria-hidden', String(!open));
+        if(open) btn.setAttribute('aria-label','Fechar menu');
+        else btn.setAttribute('aria-label','Abrir menu');
+      }
+      btn.addEventListener('click', ()=>{
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        setState(!open);
+      });
+      // close nav on resize to desktop
+      window.addEventListener('resize', ()=>{
+        if(window.innerWidth > 720){
+          setState(false);
+          nav.removeAttribute('aria-hidden');
+        } else {
+          nav.setAttribute('aria-hidden','true');
+        }
+      });
+      // set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+
+  <!-- Structured data (fill with real values later) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Mafra Backyard Ultra – Tapada Militar",
+    "startDate": "2026-01-01",  /* TODO: replace with actual date in ISO format */
+    "location": {
+      "@type": "Place",
+      "name": "Tapada Militar de Mafra",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mafra",
+        "addressCountry": "PT"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "Amigos do Atletismo de Mafra",
+      "email": "info@mafraultra.pt"
+    }
+  }
+  </script>
 </body>
 </html>
