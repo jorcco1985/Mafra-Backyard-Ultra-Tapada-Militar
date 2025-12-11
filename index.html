@@ -27,34 +27,39 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* 🔥 Fundo animado estilo militar */
+    /* 🔥 CAMUFLADO MILITAR EM CSS (sem imagens) */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url("https://i.imgur.com/YVh3pFI.png");
-      opacity: 0.18;
+      inset: 0;
       z-index: -1;
-      background-size: 300%;
-      animation: movebg 22s infinite linear;
+      background:
+        radial-gradient(circle at 10% 20%, #4a5f34 0, #4a5f34 22%, transparent 23%),
+        radial-gradient(circle at 80% 0%,  #38452a 0, #38452a 24%, transparent 25%),
+        radial-gradient(circle at 0% 50%,  #2f3b24 0, #2f3b24 20%, transparent 21%),
+        radial-gradient(circle at 80% 60%, #6b7c3b 0, #6b7c3b 22%, transparent 23%),
+        radial-gradient(circle at 20% 90%, #554128 0, #554128 20%, transparent 21%),
+        radial-gradient(circle at 50% 50%, #1c2318 0, #1c2318 60%, transparent 61%);
+      background-color: #050607;
+      background-size: 180% 180%;
+      opacity: 0.4;
+      animation: movebg 36s infinite alternate ease-in-out;
     }
 
     @keyframes movebg {
       0%   { background-position: 0% 0%; }
-      50%  { background-position: 80% 80%; }
-      100% { background-position: 0% 0%; }
+      50%  { background-position: 80% 40%; }
+      100% { background-position: 20% 80%; }
     }
 
     header {
       padding: 2rem 1.5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top, #262a30cc, #050607dd);
+      background: radial-gradient(circle at top, #262a30ee, #050607f5);
       backdrop-filter: blur(4px);
     }
 
@@ -201,7 +206,7 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
-      background: #050607cc;
+      background: #050607dd;
       backdrop-filter: blur(6px);
       border-radius: 12px;
       margin-top: 2rem;
@@ -279,7 +284,7 @@
 
   <header>
 
-    <!-- NAV SIMPLES NO TOPO -->
+    <!-- NAV TOPO -->
     <nav class="nav">
       <a href="#sobre">Sobre</a>
       <a href="#local">Local</a>
