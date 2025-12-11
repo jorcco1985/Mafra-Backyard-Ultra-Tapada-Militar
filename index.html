@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mafra Backyard Ultra – Tapada Militar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050607;
+      --bg-alt: #101214;
+      --accent: #6ea16a;   /* verde militar suave */
+      --text: #f5f5f5;
+      --muted: #a0a4aa;
+      --border: #262a30;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at top, #262a30, #050607);
+    }
+
+    .logo-text {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .tagline {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .event-info {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+    }
+
+    .event-info span strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #081008;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    section {
+      margin-bottom: 2.3rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.6rem;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    section h2 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin: 0 0 0.7rem;
+    }
+
+    section h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: #dde0e4;
+      margin: 0.2rem 0 0.6rem;
+    }
+
+    ul {
+      margin: 0.3rem 0 0.3rem 1.1rem;
+      padding: 0;
+    }
+
+    li {
+      font-size: 0.93rem;
+      line-height: 1.5;
+      color: #dde0e4;
+    }
+
+    .highlight-box {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1rem 1rem 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .small {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    a {
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .event-info { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-text">Tapada Militar &middot; Mafra</div>
+    <h1>Mafra Backyard Ultra</h1>
+    <div class="subtitle">Backyard Ultra &bull; Portugal</div>
+
+    <p class="tagline">
+      Formato oficial Backyard Ultra &mdash; loop de 6,706 km, 125 m D+, 1 hora para cada volta.
+    </p>
+
+    <div class="event-info">
+      <span><strong>Data</strong> a definir</span>
+      <span><strong>Local</strong> Tapada Militar, Mafra</span>
+      <span><strong>Zona base</strong> Gimnodesportivo Militar</span>
+    </div>
+
+    <div class="buttons">
+      <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
+      <!-- TROCAR ESTE LINK PELO LINK REAL DAS INSCRIÇÕES -->
+      <a href="https://link-para-inscricoes.com" class="btn btn-primary">Inscrições</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="sobre">
+      <h2>Sobre a prova</h2>
+      <h3>Mental, simples, brutal.</h3>
+      <p>
+        A Mafra Backyard Ultra – Tapada Militar segue o formato oficial Backyard Ultra:
+        uma volta de <strong>6,706 km</strong> por hora, todos à partida ao som do sino,
+        até ficar apenas um atleta em prova. Não há tempos finais, nem classificação tradicional:
+        ou continuas a alinhar na linha de partida, ou estás fora.
+      </p>
+      <p>
+        O objetivo é simples de explicar e difícil de concretizar:
+        <strong>“só mais uma volta”</strong>, até já não ser possível.
+      </p>
+    </section>
+
+    <section id="local">
+      <h2>Local &amp; zona base</h2>
+      <h3>Tapada Militar &amp; Gimnodesportivo Militar</h3>
+      <p>
+        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, em ambiente controlado
+        e com enquadramento único. A zona base será instalada
+        <strong>dentro do Gimnodesportivo Militar</strong>, garantindo:
+      </p>
+      <ul>
+        <li>Espaço interior amplo e acolhedor</li>
+        <li>Pontos de água e eletricidade</li>
+        <li>Zonas de descanso para atletas e equipas de apoio</li>
+        <li>Proteção do vento e da chuva, especialmente durante a noite</li>
+      </ul>
+      <div class="highlight-box small">
+        A proximidade entre a zona de descanso e a linha de partida facilita a rotina:
+        comer, trocar de roupa, descansar alguns minutos e voltar ao loop seguinte.
+      </div>
+    </section>
+
+    <section id="percurso">
+      <h2>Percurso &amp; altimetria</h2>
+      <h3>Loop de 6,706 km &mdash; 125 m D+</h3>
+      <p>
+        O percurso combina estradões e trilhos da Tapada Militar, com:
+      </p>
+      <ul>
+        <li>Subidas progressivas na primeira metade da volta</li>
+        <li>Descidas fluídas em estradão</li>
+        <li>Últimos quilómetros em <strong>subida ligeira</strong> de regresso à base</li>
+      </ul>
+      <p>
+        A altimetria aproximada é de <strong>125 m de desnível positivo</strong> por volta,
+        desenhada para ser desafiantes ao longo das horas, mas corrível para atletas consistentes.
+      </p>
+      <p class="small">
+        O track final (GPX) e mapa do percurso serão disponibilizados mais perto da data da prova.
+      </p>
+    </section>
+
+    <section id="inscricoes">
+      <h2>Inscrições</h2>
+      <h3>Vagas limitadas</h3>
+      <p>
+        As inscrições serão feitas através da plataforma oficial de cronometragem/inscrições.
+      </p>
+      <p>
+        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui para aceder à página de inscrições</strong></a>
+        <br>
+        (o link será atualizado assim que a plataforma estiver disponível).
+      </p>
+    </section>
+
+    <section id="contactos">
+      <h2>Contactos</h2>
+      <h3>Organização</h3>
+      <p>
+        Organização: <strong>Amigos do Atletismo de Mafra</strong><br>
+        E-mail: <a href="mailto:aamafra@aamafra.com">teuemail@exemplo.com</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Mafra Backyard Ultra &middot; Tapada Militar, Mafra &middot; Organização: Amigos do Atletismo de Mafra
+  </footer>
+</body>
+</html>
