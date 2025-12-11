@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <title>Mafra Backyard Ultra – Tapada Militar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
     :root {
       --bg: #050607;
       --bg-alt: #101214;
-      --accent: #6ea16a;   /* verde militar suave */
+      --accent: #6ea16a;  
       --text: #f5f5f5;
       --muted: #a0a4aa;
       --border: #262a30;
@@ -21,13 +22,36 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* 🔥 Fundo animado estilo militar */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("https://i.imgur.com/YVh3pFI.png");
+      opacity: 0.18;
+      z-index: -1;
+      background-size: 300%;
+      animation: movebg 22s infinite linear;
+    }
+
+    @keyframes movebg {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 80% 80%; }
+      100% { background-position: 0% 0%; }
     }
 
     header {
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 3rem 1.5rem 2rem;
       text-align: center;
       border-bottom: 1px solid var(--border);
-      background: radial-gradient(circle at top, #262a30, #050607);
+      background: radial-gradient(circle at top, #262a30cc, #050607dd);
+      backdrop-filter: blur(4px);
     }
 
     .logo-text {
@@ -35,12 +59,13 @@
       text-transform: uppercase;
       letter-spacing: 0.35em;
       color: var(--muted);
+      margin-top: 0.5rem;
       margin-bottom: 0.75rem;
     }
 
     h1 {
       margin: 0;
-      font-size: 2.4rem;
+      font-size: 2.8rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
     }
@@ -111,6 +136,10 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1.5rem 3rem;
+      background: #050607aa;
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      margin-top: 2rem;
     }
 
     section {
@@ -163,35 +192,32 @@
       margin-top: 0.6rem;
     }
 
-    .small {
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
     footer {
       border-top: 1px solid var(--border);
       padding: 1rem;
       text-align: center;
       font-size: 0.8rem;
       color: var(--muted);
-    }
-
-    a {
-      color: var(--accent);
+      margin-top: 2rem;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 1.8rem; }
+      h1 { font-size: 2rem; }
       .event-info { gap: 1rem; }
     }
+
   </style>
 </head>
+
 <body>
+
   <header>
+
+    <!-- LOGO MAIOR -->
     <div style="text-align:center;">
       <img src="WhatsApp Image 2025-12-10 at 17.18.57.jpeg"
            alt="Mafra Backyard Ultra logo"
-           style="max-width:180px; margin-bottom: 1rem; border-radius: 12px;">
+           style="max-width:280px; margin-bottom: 1rem; border-radius: 12px;">
     </div>
 
     <div class="logo-text">Tapada Militar · Mafra</div>
@@ -201,7 +227,7 @@
     <div class="subtitle">Backyard Ultra • Portugal</div>
 
     <p class="tagline">
-      Formato oficial Backyard Ultra &mdash; loop de 6,706 km, 125 m D+, 1 hora para cada volta.
+      Formato oficial Backyard Ultra — loop de 6,706 km, 125 m D+, 1 hora para cada volta.
     </p>
 
     <div class="event-info">
@@ -212,79 +238,67 @@
 
     <div class="buttons">
       <a href="regras.html" class="btn btn-outline">Regras da Prova</a>
-      <!-- TROCAR ESTE LINK PELO LINK REAL DAS INSCRIÇÕES -->
       <a href="https://link-para-inscricoes.com" class="btn btn-primary">Inscrições</a>
     </div>
+
   </header>
 
+
   <main>
+
     <section id="sobre">
       <h2>Sobre a prova</h2>
       <h3>Mental, simples, brutal.</h3>
       <p>
         A Mafra Backyard Ultra – Tapada Militar segue o formato oficial Backyard Ultra:
-        uma volta de <strong>6,706 km</strong> por hora, todos à partida ao som do sino,
-        até ficar apenas um atleta em prova. Não há tempos finais, nem classificação tradicional:
-        ou continuas a alinhar na linha de partida, ou estás fora.
+        uma volta de <strong>6,706 km</strong> por hora, até restar apenas um atleta.
       </p>
       <p>
-        O objetivo é simples de explicar e difícil de concretizar:
-        <strong>“só mais uma volta”</strong>, até já não ser possível.
+        O lema é simples: <strong>"só mais uma volta"</strong>.
       </p>
     </section>
+
 
     <section id="local">
       <h2>Local &amp; zona base</h2>
       <h3>Tapada Militar &amp; Gimnodesportivo Militar</h3>
       <p>
-        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, em ambiente controlado
-        e com enquadramento único. A zona base será instalada
-        <strong>dentro do Gimnodesportivo Militar</strong>, garantindo:
+        A prova decorre dentro da <strong>Tapada Militar de Mafra</strong>, um ambiente seguro e único.
       </p>
       <ul>
         <li>Espaço interior amplo e acolhedor</li>
         <li>Pontos de água e eletricidade</li>
         <li>Zonas de descanso para atletas e equipas de apoio</li>
-        <li>Proteção do vento e da chuva, especialmente durante a noite</li>
+        <li>Proteção do vento e da chuva</li>
       </ul>
-      <div class="highlight-box small">
-        A proximidade entre a zona de descanso e a linha de partida facilita a rotina:
-        comer, trocar de roupa, descansar alguns minutos e voltar ao loop seguinte.
-      </div>
     </section>
+
 
     <section id="percurso">
       <h2>Percurso &amp; altimetria</h2>
-      <h3>Loop de 6,706 km &mdash; 125 m D+</h3>
+      <h3>Loop de 6,706 km — 125 m D+</h3>
       <p>
-        O percurso combina estradões e trilhos da Tapada Militar, com:
+        O percurso combina trilhos e estradões, com:
       </p>
       <ul>
-        <li>Subidas progressivas na primeira metade da volta</li>
-        <li>Descidas fluídas em estradão</li>
-        <li>Últimos quilómetros em <strong>subida ligeira</strong> de regresso à base</li>
+        <li>Subidas progressivas</li>
+        <li>Descidas fluídas</li>
+        <li>Regresso final em subida ligeira</li>
       </ul>
-      <p>
-        A altimetria aproximada é de <strong>125 m de desnível positivo</strong> por volta,
-        desenhada para ser desafiante ao longo das horas, mas corrível para atletas consistentes.
-      </p>
-      <p class="small">
-        O track final (GPX) e mapa do percurso serão disponibilizados mais perto da data da prova.
-      </p>
     </section>
+
 
     <section id="inscricoes">
       <h2>Inscrições</h2>
       <h3>Vagas limitadas</h3>
       <p>
-        As inscrições serão feitas através da plataforma oficial de cronometragem/inscrições.
+        As inscrições serão feitas pela plataforma oficial.
       </p>
       <p>
-        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui para aceder à página de inscrições</strong></a>
-        <br>
-        (o link será atualizado assim que a plataforma estiver disponível).
+        👉 <a href="https://link-para-inscricoes.com"><strong>Clica aqui</strong></a>
       </p>
     </section>
+
 
     <section id="contactos">
       <h2>Contactos</h2>
@@ -294,10 +308,13 @@
         E-mail: <a href="mailto:aamafra@aamafra.com">aamafra@aamafra.com</a>
       </p>
     </section>
+
   </main>
 
+
   <footer>
-    Mafra Backyard Ultra &middot; Tapada Militar, Mafra &middot; Organização: Amigos do Atletismo de Mafra
+    Mafra Backyard Ultra · Tapada Militar · Organização: Amigos do Atletismo de Mafra
   </footer>
+
 </body>
 </html>
